@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  /*Tags aditivos safari */
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <meta name="apple-mobile-web-app-title" content="Meu App">
+
+  <link rel="apple-touch-icon" href="img/iphone-icon.png">
+
+  <link rel="apple-touch-icon" sizes="152x152" href="img/ipad-icon.png">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="img/iphone-retina-icon.png">
+
+  <meta name="format-detection" content="telephone=no">
+
+  <meta name="theme-color" content="#ff5500">  
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Estudos — Prova Multi</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+
+  :root {
+    --bg: #0f0f13;
+    --surface: #17171f;
+    --border: #2a2a38;
+    --text: #e8e6e0;
+    --muted: #8a8798;
+    --p1: #7eb8f7;
+    --p2: #78d9a0;
+    --accent: #f4c86a;
+    --tag-bg: #1e1e2c;
+    --sidebar-w: 280px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.75;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* SIDEBAR */
+  #sidebar {
+    width: var(--sidebar-w);
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    overflow-y: auto;
+    z-index: 100;
+    padding-bottom: 2rem;
+  }
+
+  #sidebar-header {
+    padding: 1.5rem 1.2rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  #sidebar-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--accent);
+    line-height: 1.3;
+  }
+
+  #sidebar-header p {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 0.3rem;
+  }
+
+  .period-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 1.2rem 0.4rem;
+    color: var(--muted);
+  }
+
+  .period-label.p1 { color: var(--p1); }
+  .period-label.p2 { color: var(--p2); }
+
+  .nav-item {
+    display: block;
+    padding: 0.45rem 1.2rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+    cursor: pointer;
+  }
+
+  .nav-item:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .nav-item.active { color: var(--text); border-left-color: var(--accent); background: rgba(244,200,106,0.06); }
+
+  /* MAIN */
+  #main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    max-width: calc(100% - var(--sidebar-w));
+    padding: 3rem 4rem;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .period-badge {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.7rem;
+  }
+
+  .p1-badge { background: rgba(126,184,247,0.12); color: var(--p1); }
+  .p2-badge { background: rgba(120,217,160,0.12); color: var(--p2); }
+
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--accent);
+    margin: 2rem 0 0.7rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--p1);
+    margin: 1.3rem 0 0.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .p2-section h4 { color: var(--p2); }
+
+  p { margin-bottom: 0.9rem; color: #ccc9c0; }
+
+  strong { color: var(--text); font-weight: 600; }
+
+  em { color: var(--accent); font-style: italic; }
+
+  ul, ol {
+    margin: 0.5rem 0 1rem 1.4rem;
+    color: #ccc9c0;
+  }
+
+  li { margin-bottom: 0.35rem; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.2rem 0;
+  }
+
+  .card.highlight {
+    border-left: 3px solid var(--accent);
+    background: rgba(244,200,106,0.04);
+  }
+
+  .card.info {
+    border-left: 3px solid var(--p1);
+    background: rgba(126,184,247,0.04);
+  }
+
+  .card.green {
+    border-left: 3px solid var(--p2);
+    background: rgba(120,217,160,0.04);
+  }
+
+  .card-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .card.info .card-title { color: var(--p1); }
+  .card.green .card-title { color: var(--p2); }
+
+  .author-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .author-card {
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+  }
+
+  .author-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+  }
+
+  .author-idea {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .timeline {
+    position: relative;
+    margin: 1rem 0 1.5rem 1rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.93rem;
+    top: 0.45rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+
+  .timeline-year {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  .timeline-content {
+    font-size: 0.88rem;
+    color: #ccc9c0;
+    margin-top: 0.15rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  th {
+    background: var(--tag-bg);
+    color: var(--accent);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: #ccc9c0;
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin: 0.15rem;
+  }
+
+  /* HOME */
+  #home .welcome-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  #home .welcome-title span { color: var(--accent); }
+
+  #home .subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .period-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    background: var(--surface);
+  }
+
+  .period-card h3 {
+    font-size: 1rem;
+    border: none;
+    padding: 0;
+    margin: 0 0 0.8rem;
+  }
+
+  .period-card ul { margin: 0; padding-left: 1rem; }
+  .period-card li { font-size: 0.82rem; margin-bottom: 0.2rem; color: var(--muted); }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  @media (max-width: 800px) {
+    #sidebar { width: 100%; height: auto; position: relative; }
+    #main { margin-left: 0; max-width: 100%; padding: 1.5rem; }
+    body { flex-direction: column; }
+    .author-grid, .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div id="sidebar-header">
+    <h1>Guia de Estudos<br>Prova Multi</h1>
+    <p>1º e 2º Período — Direito</p>
+  </div>
+
+  <a class="nav-item active" onclick="show('home')">🏠 Início</a>
+
+  <div class="period-label p1">1º Período</div>
+  <a class="nav-item" onclick="show('sociologia')">Sociologia</a>
+  <a class="nav-item" onclick="show('filosofia')">Filosofia</a>
+  <a class="nav-item" onclick="show('historia-direito')">História do Direito</a>
+  <a class="nav-item" onclick="show('ciencia-politica')">Ciência Política</a>
+  <a class="nav-item" onclick="show('teoria-direito')">Teoria do Direito</a>
+  <a class="nav-item" onclick="show('penal1')">Direito Penal — Princípios</a>
+  <a class="nav-item" onclick="show('civil1')">Direito Civil — Pessoas e Bens</a>
+
+  <div class="period-label p2">2º Período</div>
+  <a class="nav-item" onclick="show('economia')">Economia</a>
+  <a class="nav-item" onclick="show('psicologia')">Psicologia do Direito</a>
+  <a class="nav-item" onclick="show('filosofia-direito')">Filosofia do Direito</a>
+  <a class="nav-item" onclick="show('comunicacao')">Comunicação Jurídica</a>
+  <a class="nav-item" onclick="show('teoria-estado')">Teoria do Estado e CF</a>
+  <a class="nav-item" onclick="show('penal2')">Direito Penal — Teoria Geral</a>
+  <a class="nav-item" onclick="show('civil2')">Direito Civil — Fatos Jurídicos</a>
+</nav>
+
+<main id="main">
+
+  <!-- HOME -->
+  <div id="home" class="section active">
+    <div class="welcome-title">Prova <span>Multi</span></div>
+    <p class="subtitle">Material de estudo completo — 1º e 2º Período · Prova dia 20</p>
+
+    <div class="card highlight">
+      <div class="card-title">⚡ Como usar este material</div>
+      Use o menu lateral para navegar entre as disciplinas. Cada seção traz explicações reais dos conteúdos, não apenas listas. Leia com calma e foque nos conceitos em negrito.
+    </div>
+
+    <div class="grid-2">
+      <div class="period-card">
+        <h3 style="color: var(--p1)">🔵 1º Período</h3>
+        <ul>
+          <li>Sociologia</li>
+          <li>Filosofia</li>
+          <li>História do Direito</li>
+          <li>Ciência Política</li>
+          <li>Teoria do Direito</li>
+          <li>Dir. Penal — Princípios</li>
+          <li>Dir. Civil — Pessoas e Bens</li>
+        </ul>
+      </div>
+      <div class="period-card">
+        <h3 style="color: var(--p2)">🟢 2º Período</h3>
+        <ul>
+          <li>Economia</li>
+          <li>Psicologia do Direito</li>
+          <li>Filosofia do Direito</li>
+          <li>Comunicação Jurídica</li>
+          <li>Teoria do Estado e CF</li>
+          <li>Dir. Penal — Teoria Geral do Crime</li>
+          <li>Dir. Civil — Fatos Jurídicos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIOLOGIA -->
+  <div id="sociologia" class="section">
+    <div class="section-header">
+      <span class="period-badge p1-badge">1º Período</span>
+      <h2>Sociologia</h2>
+    </div>
+
+    <h3>Surgimento da Sociologia</h3>
+    <p>A Sociologia nasce no século XIX como resposta intelectual às transformações provocadas pela <strong>Revolução Industrial</strong> e pela <strong>Revolução Francesa</strong>. Antes disso, a sociedade era explicada pela teologia ou pela filosofia especulativa. Auguste Comte (1798–1857) foi o primeiro a usar o termo "sociologia" e propôs que ela deveria ser uma <em>ciência positiva</em> — ou seja, baseada em fatos observáveis, assim como a física e a biologia.</p>
+    <p>O ponto central do surgimento é que a sociedade industrial criou <strong>novos problemas</strong>: desigualdade, miséria urbana, perda de laços comunitários, conflitos de classe. Era preciso uma ciência para estudar e explicar tudo isso.</p>
+
+    <h3>Émile Durkheim (1858–1917)</h3>
+    <p>Durkheim é o pai da sociologia como disciplina acadêmica. Para ele, a sociedade é uma realidade própria, que não se reduz à soma dos indivíduos. Os <strong>fatos sociais</strong> são maneiras de agir, pensar e sentir que são exteriores ao indivíduo e exercem sobre ele uma pressão coercitiva (ex.: língua, moral, leis, religião).</p>
+    <div class="author-grid">
+      <div class="author-card">
+        <div class="author-name">Consciência Coletiva</div>
+        <div class="author-idea">Conjunto de crenças e sentimentos comuns à média dos membros de uma sociedade. É o que une as pessoas e dá coesão ao grupo.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Solidariedade Mecânica</div>
+        <div class="author-idea">Nas sociedades tradicionais/simples: as pessoas são parecidas entre si, compartilham os mesmos valores. A coesão vem da semelhança.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Solidariedade Orgânica</div>
+        <div class="author-idea">Nas sociedades modernas/complexas: as pessoas são diferentes e especializadas. A coesão vem da <em>interdependência</em> (cada um precisa do outro).</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Suicídio como fato social</div>
+        <div class="author-idea">Durkheim mostrou que até o suicídio — ato aparentemente individual — obedece a padrões sociais. Tipos: egoísta, altruísta e anômico.</div>
+      </div>
+    </div>
+
+    <h3>Max Weber (1864–1920)</h3>
+    <p>Weber se interessa pela <strong>ação social</strong> — toda conduta humana à qual o agente atribui sentido e que se orienta pela ação dos outros. Para ele, a sociologia deve ser <em>compreensiva</em> (Verstehen): entender o significado que os atores dão às suas ações.</p>
+    <div class="author-grid">
+      <div class="author-card">
+        <div class="author-name">Tipos Ideais</div>
+        <div class="author-idea">Construções mentais abstratas que servem de modelo para analisar a realidade. Não existem na realidade pura, mas ajudam a comparar e explicar.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Tipos de Dominação</div>
+        <div class="author-idea"><strong>Tradicional</strong>: autoridade pelo costume e tradição (reis, patriarcas). <strong>Carismática</strong>: autoridade pela devoção pessoal ao líder. <strong>Legal-racional</strong>: autoridade pela lei e normas (Estado moderno).</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Ética Protestante</div>
+        <div class="author-idea">O protestantismo calvinista, ao valorizar o trabalho e a poupança como sinais da graça divina, criou as condições culturais para o surgimento do capitalismo.</div>
+      </div>
+    </div>
+
+    <h3>Karl Marx (1818–1883)</h3>
+    <p>Para Marx, a história é movida pela <strong>luta de classes</strong>. A sociedade capitalista divide-se entre <em>burguesia</em> (donos dos meios de produção) e <em>proletariado</em> (trabalhadores que vendem sua força de trabalho). O trabalhador produz mais valor do que recebe — isso é a <strong>mais-valia</strong>, que é apropriada pelo capitalista.</p>
+    <div class="card info">
+      <div class="card-title">Conceito-chave: Alienação</div>
+      O trabalhador se aliena em 4 dimensões: <strong>(1)</strong> do produto — não é seu; <strong>(2)</strong> do processo — trabalho mecânico e sem sentido; <strong>(3)</strong> de outros seres humanos — relações viram mercadoria; <strong>(4)</strong> de sua própria essência humana — perde a criatividade e a liberdade.
+    </div>
+    <p><strong>Infraestrutura e Superestrutura:</strong> a base econômica (modos de produção) determina a superestrutura (direito, política, religião, cultura). O direito, para Marx, é um instrumento da classe dominante para manter seu poder.</p>
+
+    <h3>Zygmunt Bauman — Modernidade Líquida</h3>
+    <p>Bauman (1925–2017) descreve a sociedade contemporânea como <strong>"líquida"</strong>: tudo flui, muda rapidamente e não se solidifica. Ao contrário da modernidade "sólida" (em que as instituições — família, emprego, Estado — eram estáveis), hoje tudo é provisório.</p>
+    <p>As <strong>consequências</strong> incluem: identidades frágeis e mutáveis; relacionamentos descartáveis; insegurança e ansiedade como estados permanentes; consumismo como forma de construir identidade. O direito nesse contexto também enfrenta desafios para acompanhar a fluidez social.</p>
+
+    <h3>Sérgio Buarque de Holanda — "Raízes do Brasil"</h3>
+    <p>Obra de 1936 que analisa a formação cultural e social brasileira. Seu conceito central é o do <strong>homem cordial</strong>: o brasileiro tende a personalizar as relações, levando a intimidade para espaços públicos e dificultando a separação entre público e privado. Isso explica fenômenos como o <em>nepotismo</em> e a <em>corrupção</em> na esfera pública.</p>
+
+    <h3>Direito Vivo (Eugen Ehrlich)</h3>
+    <p>O <strong>direito vivo</strong> é o direito que realmente rege as relações humanas em sociedade, distinto do direito estatal escrito. As normas efetivas que as pessoas seguem no dia a dia — nos contratos, nas famílias, nas associações — constituem o verdadeiro direito. O direito estatal é apenas uma parte do fenômeno jurídico total.</p>
+  </div>
+
+  <!-- FILOSOFIA -->
+  <div id="filosofia" class="section">
+    <div class="section-header">
+      <span class="period-badge p1-badge">1º Período</span>
+      <h2>Filosofia</h2>
+    </div>
+
+    <h3>Pré-Socráticos — A busca pelo Arché</h3>
+    <p>Os filósofos anteriores a Sócrates (séc. VI–V a.C.) buscavam o <strong>arché</strong> — o princípio fundamental de tudo que existe. Abandonaram as explicações mitológicas e buscaram explicações racionais para a natureza.</p>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Tales de Mileto</div><div class="author-idea">O arché é a <strong>água</strong>. Tudo deriva e retorna à água.</div></div>
+      <div class="author-card"><div class="author-name">Heráclito</div><div class="author-idea">O arché é o <strong>fogo</strong>, símbolo de transformação constante. "Não se pode entrar duas vezes no mesmo rio." — o devir (tudo muda).</div></div>
+      <div class="author-card"><div class="author-name">Parmênides</div><div class="author-idea">O <strong>ser</strong> é único, imutável, eterno. A mudança é ilusão dos sentidos. Apenas a razão acessa a verdade.</div></div>
+      <div class="author-card"><div class="author-name">Pitágoras</div><div class="author-idea">O arché são os <strong>números</strong>. A realidade tem estrutura matemática.</div></div>
+    </div>
+    <div class="card highlight">
+      <div class="card-title">Oposição fundamental: Heráclito × Parmênides</div>
+      <strong>Heráclito</strong>: tudo muda (devir), a mudança é real. <strong>Parmênides</strong>: o ser é permanente, a mudança é aparência. Essa tensão vai marcar toda a filosofia ocidental.
+    </div>
+
+    <h3>Sócrates e os Sofistas</h3>
+    <p>Os <strong>sofistas</strong> eram professores itinerantes que ensinavam retórica e argumentação. Para eles, a verdade é relativa — cada um tem a sua (Protágoras: "o homem é a medida de todas as coisas"). Cobravam pelo ensino e eram hábeis na persuasão.</p>
+    <p><strong>Sócrates</strong> se opõe: há verdades universais que podem ser descobertas pelo diálogo. Seu método é a <strong>maiêutica</strong> ("arte de parir ideias"): por meio de perguntas, ajuda o interlocutor a extrair o conhecimento que está latente em si mesmo. "Só sei que nada sei."</p>
+
+    <h3>Ética das Virtudes (Aristóteles)</h3>
+    <p>Para Aristóteles, o fim último do ser humano é a <em>eudaimonia</em> (felicidade/florescimento). A virtude (<em>areté</em>) é a disposição de agir segundo o <strong>meio-termo</strong> entre dois extremos viciosos. Ex.: a coragem é o meio-termo entre a covardia e a temeridade.</p>
+    <p>Virtudes são <em>hábitos</em>: se tornam virtude pelo exercício contínuo. O ser humano virtuoso é aquele que, com o tempo, age bem naturalmente, sem esforço.</p>
+
+    <h3>Racionalismo e Empirismo</h3>
+    <table>
+      <tr><th>Corrente</th><th>Tese principal</th><th>Filósofos</th></tr>
+      <tr><td><strong>Racionalismo</strong></td><td>O conhecimento verdadeiro vem da razão, não dos sentidos. A mente possui ideias inatas.</td><td>Descartes, Spinoza, Leibniz</td></tr>
+      <tr><td><strong>Empirismo</strong></td><td>Todo conhecimento vem da experiência sensorial. A mente é uma "tábula rasa" ao nascer.</td><td>Locke, Hume, Berkeley</td></tr>
+    </table>
+
+    <h3>Ética Kantiana</h3>
+    <p>Kant (1724–1804) propõe uma ética <em>deontológica</em>: o valor moral de uma ação está na <strong>intenção</strong> (agir por dever), não nas consequências. O princípio fundamental é o <strong>Imperativo Categórico</strong>:</p>
+    <div class="card highlight">
+      <div class="card-title">Imperativo Categórico — Formulações</div>
+      <ul>
+        <li><strong>Universalidade:</strong> "Age apenas segundo a máxima que possas ao mesmo tempo querer que se torne lei universal."</li>
+        <li><strong>Humanidade:</strong> "Age de tal forma que trates a humanidade, tanto na tua pessoa como na de qualquer outro, sempre como um fim e nunca apenas como um meio."</li>
+      </ul>
+    </div>
+
+    <h3>Utilitarismo (Bentham e Mill)</h3>
+    <p>A ação moralmente correta é aquela que <strong>maximiza a felicidade (utilidade) do maior número de pessoas</strong>. Bentham propôs um "cálculo hedonista" dos prazeres. Mill aprimorou: há prazeres de qualidade superior (intelectuais) e inferior (corporais).</p>
+    <p>No direito, o utilitarismo influencia a análise econômica do direito e políticas penais baseadas na prevenção.</p>
+
+    <h3>Contratualismo</h3>
+    <table>
+      <tr><th>Autor</th><th>Estado de Natureza</th><th>Contrato Social</th><th>Resultado</th></tr>
+      <tr><td>Hobbes</td><td>"Guerra de todos contra todos" — violência e medo</td><td>Abdicação total de direitos</td><td>Soberano absoluto (Leviatã)</td></tr>
+      <tr><td>Locke</td><td>Pacífico, mas inseguro — direitos naturais existem</td><td>Proteção dos direitos naturais</td><td>Governo limitado, com direito à resistência</td></tr>
+      <tr><td>Rousseau</td><td>Homem naturalmente bom — sociedade o corrompe</td><td>Expressão da vontade geral</td><td>Soberania popular inalienável</td></tr>
+    </table>
+
+    <h3>Trabalho e Alienação (Marx)</h3>
+    <p>Ver em Sociologia. Na filosofia, a alienação é mais ampla: o ser humano aliena-se de sua <em>natureza genérica</em> (sua essência como ser criativo e livre) quando o trabalho se torna mero meio de sobrevivência.</p>
+
+    <h3>Poder Disciplinar (Foucault)</h3>
+    <p>Michel Foucault analisa como o poder moderno não opera apenas pela violência, mas pela <strong>disciplina</strong>: um conjunto de técnicas que moldam os corpos e comportamentos (vigilância, normalização, exame). Instituições como prisões, escolas, hospitais e quartéis são exemplos de <em>instituições disciplinares</em>.</p>
+    <p>O <strong>Panóptico</strong> (prisão circular onde os presos não sabem se estão sendo vigiados) é sua metáfora central: o indivíduo internaliza o olhar do poder e se vigia.</p>
+
+    <h3>Existencialismo</h3>
+    <p>Corrente filosófica do séc. XX centrada na existência humana concreta. Sartre: "<strong>a existência precede a essência</strong>" — não há natureza humana predeterminada; o ser humano primeiro existe, depois se define pelos seus atos. Isso implica <strong>liberdade radical</strong> e, portanto, <strong>responsabilidade total</strong>.</p>
+
+    <h3>Estoicismo</h3>
+    <p>Filosofia helenística (Zenão, Epicteto, Marco Aurélio): a virtude é o único bem verdadeiro. O que não depende de nós (saúde, riqueza, fama) é <em>indiferente</em>. Devemos aceitar com serenidade o que não podemos controlar e agir virtuosamente no que controlamos. Grande influência sobre o estoicismo jurídico (direito natural racional).</p>
+
+    <h3>Esfera Pública (Habermas) e Democracia</h3>
+    <p>Para Habermas, a <strong>esfera pública</strong> é o espaço — físico e simbólico — onde os cidadãos debatem racionalmente questões de interesse coletivo. É mediada pela <em>razão comunicativa</em>: o melhor argumento deve prevalecer, não o poder ou o dinheiro. A democracia deliberativa pressupõe que decisões políticas legítimas resultam desse debate racional e inclusivo.</p>
+  </div>
+
+  <!-- HISTÓRIA DO DIREITO -->
+  <div id="historia-direito" class="section">
+    <div class="section-header">
+      <span class="period-badge p1-badge">1º Período</span>
+      <h2>História do Direito</h2>
+    </div>
+
+    <h3>Direito dos Povos Ágrafos</h3>
+    <p>Povos sem escrita possuem direito oral, costumeiro e ritualístico. O direito se manifesta nos costumes, tabus, ritos de passagem e nas decisões dos anciãos ou chefes. Não há separação clara entre direito, religião e moral — são instâncias fundidas. A norma é transmitida pela memória coletiva e pela oralidade.</p>
+
+    <h3>Direito Grego</h3>
+    <p>A civilização grega desenvolveu importantes contribuições jurídicas. <strong>Sólon</strong> (séc. VI a.C.) realizou reformas que aliviaram as dívidas dos camponeses e criaram a base da democracia ateniense. A lei era escrita e pública — afixada em tábuas para conhecimento de todos, um avanço enorme contra o arbítrio.</p>
+    <p>Os gregos desenvolveram a ideia de <em>isonomia</em> (igualdade perante a lei) e de participação popular nas decisões. Aristóteles analisou as constituições de 158 cidades-estado.</p>
+
+    <h3>Direito Romano</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">450 a.C. — Lei das XII Tábuas</div>
+        <div class="timeline-content">Primeira codificação escrita romana. Antes era oral e controlada pelos patrícios. As doze tábuas democratizaram o acesso ao direito, que passou a ser público e cognoscível por todos.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Período Clássico — Ius Civile e Ius Gentium</div>
+        <div class="timeline-content"><strong>Ius Civile:</strong> direito aplicável apenas aos cidadãos romanos (cives). Regras formais e rígidas. <strong>Ius Gentium:</strong> direito aplicável a estrangeiros (peregrinos) e nas relações entre romanos e não-romanos. Mais flexível e baseado na equidade. Com a expansão do Império, o Ius Gentium cresceu em importância.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Processo Formular</div>
+        <div class="timeline-content">Etapa intermediária do processo romano (entre o arcaico Legis Actiones e o cognitio extra ordinem). O magistrado redigia uma fórmula escrita definindo os termos da controvérsia, e o juiz privado (iudex) a aplicava ao caso. Mais flexível e acessível.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">533 d.C. — Corpus Iuris Civilis (Justiniano)</div>
+        <div class="timeline-content">Codificação do direito romano tardio. O <strong>Digesto</strong> é a parte mais importante: 50 livros com extratos dos grandes juristas clássicos. Tornou-se a base do direito europeu continental.</div>
+      </div>
+    </div>
+
+    <h3>Direito Medieval</h3>
+    <p>A Idade Média (séc. V–XV) é marcada pelo <strong>pluralismo jurídico</strong>: coexistiam várias ordens normativas — o direito canônico (Igreja), o direito feudal (senhores), o direito costumeiro local, o direito comercial (lex mercatoria) e, mais tarde, o direito romano redescoberto.</p>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Glosadores</div><div class="author-idea">Séc. XI–XIII. Estudiosos da Universidade de Bolonha que anotavam ("glossavam") o Corpus Iuris Civilis de Justiniano com comentários marginais. Irnerius é o mais famoso. Redescobriram e sistematizaram o direito romano.</div></div>
+      <div class="author-card"><div class="author-name">Romanistas / Comentadores</div><div class="author-idea">Séc. XIV–XV. Foram além das glosas e criaram comentários doutrinários aplicando o direito romano à realidade medieval. Bártolo de Sassoferrato é o principal.</div></div>
+      <div class="author-card"><div class="author-name">Pluralismo Jurídico</div><div class="author-idea">Não havia um único sistema jurídico. Cada comunidade, feudo, corporação ou Igreja tinha suas próprias normas. O direito era fragmentado e descentralizado.</div></div>
+      <div class="author-card"><div class="author-name">Common Law</div><div class="author-idea">Sistema jurídico inglês baseado em precedentes judiciais (costumes das cortes reais). Diferente do sistema romano-germânico continental. O juiz cria direito ao decidir casos.</div></div>
+    </div>
+
+    <h3>Constitucionalismo Moderno</h3>
+    <p>O constitucionalismo moderno emerge com as revoluções liberais dos séc. XVII–XVIII, buscando limitar o poder do Estado e garantir direitos individuais.</p>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-year">1776 — Carta de Independência dos EUA</div><div class="timeline-content">Declara que todos os homens são criados iguais e possuem direitos inalienáveis (vida, liberdade e busca da felicidade). Influência de Locke.</div></div>
+      <div class="timeline-item"><div class="timeline-year">1824 — Constituição Imperial do Brasil</div><div class="timeline-content">Outorgada por D. Pedro I. Criou o <strong>Poder Moderador</strong> (4º poder, exclusivo do Imperador), além dos três tradicionais. Voto censitário (apenas homens com renda mínima).</div></div>
+      <div class="timeline-item"><div class="timeline-year">1891 — Constituição da República</div><div class="timeline-content">Proclamada a República. Inspirada nos EUA: federalismo, separação dos três poderes, voto direto (mas ainda sem mulheres e analfabetos). Início da República Velha e do coronelismo.</div></div>
+      <div class="timeline-item"><div class="timeline-year">1934 — Nova Constituição</div><div class="timeline-content">Traz direitos sociais pela primeira vez (saúde, educação, trabalho). Introduz o <strong>voto feminino</strong> e o voto secreto.</div></div>
+      <div class="timeline-item"><div class="timeline-year">1937 — "Polaca" (Estado Novo)</div><div class="timeline-content">Golpe de Vargas. Constituição autoritária, inspirada no fascismo polonês e europeu. Fecha o Congresso, proíbe partidos, censura a imprensa.</div></div>
+      <div class="timeline-item"><div class="timeline-year">1967 — Ditadura Militar</div><div class="timeline-content">Concentra poder no Executivo federal. Suspende direitos políticos e civis. Complementada pelo AI-5 (1968), o ato mais duro da ditadura.</div></div>
+      <div class="timeline-item"><div class="timeline-year">1988 — Constituição Cidadã</div><div class="timeline-content">Redemocratização. A mais extensa e democrática do Brasil. Amplo catálogo de direitos fundamentais, participação popular, dignidade da pessoa humana como fundamento.</div></div>
+    </div>
+
+    <h3>Fontes do Direito</h3>
+    <table>
+      <tr><th>Fonte</th><th>Descrição</th></tr>
+      <tr><td><strong>Lei</strong></td><td>Norma escrita aprovada pelo Poder Legislativo. Principal fonte no sistema romano-germânico.</td></tr>
+      <tr><td><strong>Costume</strong></td><td>Prática social reiterada com convicção de obrigatoriedade (opinio iuris). Fonte primária nos povos ágrafos e no Common Law.</td></tr>
+      <tr><td><strong>Jurisprudência</strong></td><td>Conjunto de decisões reiteradas dos tribunais. Vinculante no Common Law; orientadora no Brasil.</td></tr>
+      <tr><td><strong>Doutrina</strong></td><td>Produção científica dos juristas. Não é fonte formal, mas tem grande influência.</td></tr>
+      <tr><td><strong>Princípios Gerais do Direito</strong></td><td>Normas implícitas que orientam o sistema (boa-fé, equidade, vedação ao enriquecimento ilícito).</td></tr>
+    </table>
+  </div>
+
+  <!-- CIÊNCIA POLÍTICA -->
+  <div id="ciencia-politica" class="section">
+    <div class="section-header">
+      <span class="period-badge p1-badge">1º Período</span>
+      <h2>Ciência Política</h2>
+    </div>
+
+    <h3>A Política na Antiguidade Grega</h3>
+    <p>Para os gregos, a política era a atividade mais elevada do ser humano. A <strong>pólis</strong> (cidade-estado) era o espaço da vida política. Aristóteles definiu o homem como <em>zoon politikon</em> — animal político, que só se realiza plenamente na vida em comunidade.</p>
+    <p><strong>Sólon</strong> (séc. VI a.C.) realizou reformas que aboliram a escravidão por dívida e criaram tribunais populares em Atenas, lançando as bases da democracia.</p>
+
+    <h3>Platão e Aristóteles</h3>
+    <div class="author-grid">
+      <div class="author-card">
+        <div class="author-name">Platão (427–347 a.C.)</div>
+        <div class="author-idea">Crítico da democracia: o povo não tem sabedoria para governar. Defende o governo dos <strong>filósofos-reis</strong> — quem conhece o Bem deve governar. Na "República", propõe uma sociedade dividida em filósofos (governantes), guerreiros e trabalhadores.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Aristóteles (384–322 a.C.)</div>
+        <div class="author-idea">A política como <strong>ciência prática</strong>: seu fim é o bem comum. Classificou as constituições em boas (monarquia, aristocracia, politeia) e más (tirania, oligarquia, democracia radical). Defendia a politeia como regime mais estável.</div>
+      </div>
+    </div>
+
+    <h3>Poder Temporal × Espiritual / Pensadores Medievais</h3>
+    <p>Na Idade Média, o grande conflito político foi entre o poder dos reis (<em>temporal</em>) e o poder do Papa (<em>espiritual</em>). Quem tinha autoridade suprema?</p>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Santo Agostinho (354–430)</div><div class="author-idea">Distingue a <strong>cidade terrena</strong> (regida pelo pecado e pela força) da <strong>cidade de Deus</strong> (regida pelo amor e pela graça). O Estado tem função limitada: manter a paz.</div></div>
+      <div class="author-card"><div class="author-name">São Tomás de Aquino (1225–1274)</div><div class="author-idea">Síntese entre fé (Agostinho) e razão (Aristóteles). A lei humana deriva da lei natural, que deriva da lei eterna (divina). O poder político é legítimo quando busca o bem comum.</div></div>
+      <div class="author-card"><div class="author-name">Martinho Lutero</div><div class="author-idea">Reforma Protestante (1517). Defende a <strong>autoridade secular</strong> independente da Igreja. Os príncipes têm poder legítimo sobre assuntos civis. Separa os dois reinos: espiritual e temporal.</div></div>
+      <div class="author-card"><div class="author-name">Thomas Müntzer</div><div class="author-idea">Líder radical da Reforma. Pregava a igualdade social e a resistência armada aos príncipes opressores. Foi executado após a Guerra dos Camponeses (1525).</div></div>
+    </div>
+
+    <h3>Contratualistas Modernos</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Thomas Hobbes (1588–1679)</div><div class="author-idea">Estado de natureza = guerra ("homo homini lupus"). O contrato social cria o <strong>Leviatã</strong>: soberano absoluto. Os súditos cedem todos os direitos em troca de segurança. Sem poder absoluto, retorna o caos.</div></div>
+      <div class="author-card"><div class="author-name">John Locke (1632–1704)</div><div class="author-idea">Direitos naturais (vida, liberdade, propriedade) existem antes do Estado. O contrato cria um governo <strong>limitado</strong> para protegê-los. Se o governo os viola, o povo tem direito à <strong>resistência</strong>.</div></div>
+      <div class="author-card"><div class="author-name">Jean-Jacques Rousseau (1712–1778)</div><div class="author-idea">O homem é naturalmente bom; a sociedade o corrompe. O contrato deve expressar a <strong>vontade geral</strong> — não a soma das vontades individuais, mas o interesse comum. Soberania popular inalienável.</div></div>
+      <div class="author-card"><div class="author-name">Immanuel Kant</div><div class="author-idea">Defende a <strong>autonomia</strong> e o <strong>republicanismo</strong>: governo baseado na razão e no consentimento dos cidadãos livres. Propôs a "paz perpétua" entre repúblicas.</div></div>
+    </div>
+
+    <h3>Conservadorismo e Críticas ao Liberalismo</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Edmund Burke (1729–1797)</div><div class="author-idea">Pai do <strong>conservadorismo</strong>. Crítico da Revolução Francesa: as tradições e instituições históricas são a sabedoria acumulada de gerações. Reformas devem ser graduais, não revolucionárias.</div></div>
+      <div class="author-card"><div class="author-name">Thomas Paine (1737–1809)</div><div class="author-idea">Defensor radical dos direitos do homem e das revoluções americana e francesa. Opositor direto de Burke.</div></div>
+      <div class="author-card"><div class="author-name">Louis de Bonald</div><div class="author-idea"><strong>Positivismo e ordem social</strong>: rejeita o individualismo iluminista. A sociedade é anterior ao indivíduo; a ordem social é sagrada e deve ser preservada.</div></div>
+    </div>
+
+    <h3>Socialismo e Comunismo</h3>
+    <p>Críticas ao liberalismo econômico: o mercado livre gera desigualdade e exploração. O socialismo propõe propriedade coletiva dos meios de produção. O comunismo (Marx) vai além: abolição das classes e do Estado. Na prática, Lenin e outros criaram regimes de partido único.</p>
+
+    <h3>Pensamento Político Contemporâneo</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Carl Schmitt (1888–1985)</div><div class="author-idea"><strong>A exceção e o decisionismo</strong>: "soberano é quem decide sobre o estado de exceção." O político se define pela distinção amigo/inimigo. Crítico do liberalismo e do parlamentarismo.</div></div>
+      <div class="author-card"><div class="author-name">Hannah Arendt (1906–1975)</div><div class="author-idea"><strong>Totalitarismo</strong> como fenômeno novo: não é tirania, mas destruição total da esfera pública. <strong>Banalidade do mal</strong>: o mal não requer monstros — basta a falta de pensamento (caso Eichmann).</div></div>
+      <div class="author-card"><div class="author-name">Norberto Bobbio (1909–2004)</div><div class="author-idea">Teoria da democracia e do estado de direito. Distingue <strong>democracia formal</strong> (regras do jogo) de <strong>democracia substancial</strong> (igualdade real). Crítico do autoritarismo.</div></div>
+      <div class="author-card"><div class="author-name">John Rawls (1921–2002)</div><div class="author-idea"><strong>Liberalismo igualitário</strong>. "Véu da ignorância": se não soubéssemos nossa posição na sociedade, escolheríamos princípios de justiça que protegem os mais vulneráveis (princípio da diferença).</div></div>
+      <div class="author-card"><div class="author-name">Robert Nozick (1938–2002)</div><div class="author-idea"><strong>Libertarianismo</strong>: Estado mínimo, limitado à proteção de direitos. Qualquer redistribuição de renda é injusta, pois viola a propriedade legítima. Crítica direta a Rawls.</div></div>
+      <div class="author-card"><div class="author-name">Pierre-Joseph Proudhon</div><div class="author-idea"><strong>Anarquismo</strong>: "a propriedade é um roubo." Crítica ao Estado como instrumento de opressão. Defende a autogestão das comunidades.</div></div>
+      <div class="author-card"><div class="author-name">Carole Pateman</div><div class="author-idea"><strong>Feminismo</strong>: o "contrato social" clássico esconde um "contrato sexual" que subordina as mulheres. A esfera privada (família) também é política.</div></div>
+      <div class="author-card"><div class="author-name">Jürgen Habermas</div><div class="author-idea"><strong>Democracia deliberativa</strong>: decisões legítimas resultam de debate público racional e inclusivo. A esfera pública é o espaço desse debate.</div></div>
+      <div class="author-card"><div class="author-name">Lilia Moritz Schwarcz</div><div class="author-idea">Historiadora brasileira. Analisa como o <strong>autoritarismo</strong> se enraizou nas instituições brasileiras — escravidão, coronelismo, cultura da impunidade.</div></div>
+    </div>
+
+    <h3>Crises da Democracia Contemporânea</h3>
+    <p><strong>Polarização:</strong> fragmentação do espaço político em campos inconciliáveis. <strong>Populismo:</strong> líderes que apelam diretamente ao "povo" contra as "elites", contornando instituições. <strong>Erosão institucional:</strong> enfraquecimento gradual de checks and balances, imprensa livre, judiciário independente. <strong>Desafios globais:</strong> migrações, mudanças climáticas, fake news e desinformação desafiam os sistemas democráticos.</p>
+  </div>
+
+  <!-- TEORIA DO DIREITO -->
+  <div id="teoria-direito" class="section">
+    <div class="section-header">
+      <span class="period-badge p1-badge">1º Período</span>
+      <h2>Teoria do Direito</h2>
+    </div>
+
+    <h3>Enfoques: Zetético e Dogmático</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Enfoque Zetético</div><div class="author-idea">Questiona os <em>fundamentos</em> do direito. Pergunta "por que o direito existe?", "o que é justo?". É aberto, interdisciplinar, crítico. Relaciona-se com filosofia, sociologia, política.</div></div>
+      <div class="author-card"><div class="author-name">Enfoque Dogmático</div><div class="author-idea">Parte das normas <em>postas</em> como dado inquestionável. Pergunta "como aplicar esta lei?". É o enfoque das faculdades de direito e do trabalho jurídico cotidiano (advocacia, judicatura).</div></div>
+    </div>
+
+    <h3>Teoria Crítica do Direito</h3>
+    <p>O direito não é neutro. Ele reflete as relações de poder e os interesses da classe dominante. Conceitos centrais:</p>
+    <ul>
+      <li><strong>Ideologia:</strong> conjunto de ideias que mascara as relações reais de poder, apresentando o particular como universal.</li>
+      <li><strong>Alienação:</strong> o trabalhador separado do produto de seu trabalho, do processo produtivo, dos outros e de si mesmo.</li>
+      <li><strong>Práxis:</strong> ação transformadora consciente que une teoria e prática para mudar a realidade.</li>
+    </ul>
+
+    <h3>Fatores de Influência no Direito</h3>
+    <table>
+      <tr><th>Fator</th><th>Exemplo de influência</th></tr>
+      <tr><td><strong>Econômico</strong></td><td>Direito contratual, propriedade, falência — refletem a economia de mercado.</td></tr>
+      <tr><td><strong>Cultural</strong></td><td>Costumes e tradições moldam normas de família, herança, direito costumeiro.</td></tr>
+      <tr><td><strong>Religioso</strong></td><td>Direito canônico, proibições religiosas incorporadas ao direito civil (ex.: casamento).</td></tr>
+      <tr><td><strong>Moral</strong></td><td>A boa-fé, o abuso de direito e a dignidade humana são exemplos de moral positivada.</td></tr>
+    </table>
+
+    <h3>Teoria da Pena</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Teorias Absolutas (Retributivas)</div><div class="author-idea">A pena é justa por si mesma — é a retribuição pelo mal cometido. "Quem faz o mal deve sofrer o mal equivalente." Kant é o principal defensor. A pena não precisa ter utilidade social.</div></div>
+      <div class="author-card"><div class="author-name">Teorias Relativas (Preventivas)</div><div class="author-idea">A pena se justifica pelos seus efeitos futuros. <strong>Prevenção geral:</strong> desestimula a sociedade de cometer crimes. <strong>Prevenção especial:</strong> ressocializa ou neutraliza o condenado.</div></div>
+      <div class="author-card"><div class="author-name">Teoria Unificadora Dialética</div><div class="author-idea">Combina retribuição e prevenção. A pena deve ser justa (limite retributivo) E útil (finalidade preventiva). Evita os excessos de cada teoria isolada.</div></div>
+    </div>
+
+    <h3>Fontes do Direito (Diferenciação)</h3>
+    <p><strong>Doutrina:</strong> produção científica dos juristas. Interpreta e sistematiza o direito, mas não cria normas formalmente vinculantes. <strong>Jurisprudência:</strong> decisões reiteradas dos tribunais; no Brasil, ganha força com as súmulas vinculantes. <strong>Legislação:</strong> norma escrita aprovada pelo Poder Legislativo; principal fonte formal no Brasil.</p>
+
+    <h3>Pós-Positivismo: Regras e Princípios</h3>
+    <p>O pós-positivismo (Dworkin, Alexy) supera o positivismo clássico ao reconhecer que o sistema jurídico é composto não só de <strong>regras</strong> mas também de <strong>princípios</strong>.</p>
+    <table>
+      <tr><th></th><th>Regras</th><th>Princípios</th></tr>
+      <tr><td><strong>Estrutura</strong></td><td>Prescrevem conduta específica</td><td>Indicam uma direção, um valor</td></tr>
+      <tr><td><strong>Conflito</strong></td><td>Uma vale (critérios: hierarquia, especialidade, temporalidade)</td><td>São ponderados — ambos podem coexistir com peso diferente</td></tr>
+      <tr><td><strong>Aplicação</strong></td><td>Subsunção (tudo ou nada)</td><td>Ponderação (proporcionalidade)</td></tr>
+      <tr><td><strong>Ex.</strong></td><td>"É proibido matar" (art. 121 CP)</td><td>Dignidade da pessoa humana, igualdade</td></tr>
+    </table>
+
+    <h3>Técnica Legislativa</h3>
+    <p>As leis são estruturadas em: <strong>artigos</strong> (unidade básica) → <strong>parágrafos</strong> (exceções ou complementações do artigo) → <strong>incisos</strong> (enumerações) → <strong>alíneas</strong> (subdivisions dos incisos). A Lei Complementar 95/98 regula a elaboração das leis no Brasil.</p>
+
+    <h3>Teoria Tridimensional do Direito (Miguel Reale)</h3>
+    <div class="card highlight">
+      <div class="card-title">Fato + Valor + Norma</div>
+      O direito é sempre uma síntese de três elementos inseparáveis:<br><br>
+      <strong>Fato</strong> = a realidade social que o direito regula (ex.: um contrato celebrado). <br>
+      <strong>Valor</strong> = a ideia de justiça, segurança, bem comum que orienta a norma. <br>
+      <strong>Norma</strong> = a regra jurídica que integra fato e valor. <br><br>
+      Os três são interdependentes: muda o fato → pode mudar a norma; muda o valor → a norma é reinterpretada.
+    </div>
+
+    <h3>Teoria Geral do Estado</h3>
+    <p><strong>Estado de Direito:</strong> o Estado se submete às suas próprias leis; ninguém está acima da lei. <strong>Separação de Poderes</strong> (Montesquieu): Legislativo (cria leis), Executivo (aplica leis), Judiciário (interpreta e resolve conflitos). Sistema de <em>checks and balances</em> — cada poder limita os outros.</p>
+
+    <h3>Direito Material × Processual</h3>
+    <p><strong>Direito Material (Substancial):</strong> define direitos e obrigações — "o quê" (ex.: Código Civil, Código Penal). <strong>Direito Processual:</strong> define o procedimento para fazer valer o direito material — "o como" (ex.: Código de Processo Civil, CPP). Sem o material, o processual não tem objeto; sem o processual, o material fica sem efetividade.</p>
+
+    <h3>Equidade</h3>
+    <p>A equidade é a <strong>aplicação justa da norma ao caso concreto</strong>, considerando as particularidades da situação. O juiz usa equidade quando a aplicação mecânica da lei produziria resultado injusto. No Brasil, o juiz pode decidir por equidade apenas quando a lei autoriza (art. 140, parágrafo único, CPC).</p>
+  </div>
+
+  <!-- DIREITO PENAL 1 -->
+  <div id="penal1" class="section">
+    <div class="section-header">
+      <span class="period-badge p1-badge">1º Período</span>
+      <h2>Direito Penal — Princípios e Fundamentos</h2>
+    </div>
+
+    <h3>Princípios Fundamentais do Direito Penal</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Legalidade (art. 5º, XXXIX, CF)</div><div class="author-idea">"Não há crime sem lei anterior que o defina, nem pena sem prévia cominação legal." <em>Nullum crimen, nulla poena sine lege.</em> Proíbe o direito penal consuetudinário e a analogia in malam partem.</div></div>
+      <div class="author-card"><div class="author-name">Anterioridade</div><div class="author-idea">A lei penal deve ser anterior ao fato criminoso. Não basta existir — precisa ser anterior ao ato.</div></div>
+      <div class="author-card"><div class="author-name">Irretroatividade</div><div class="author-idea">A lei penal mais severa não pode retroagir. Exceção: a lei mais benéfica retroage (in bonam partem), inclusive para condenados cumprindo pena.</div></div>
+      <div class="author-card"><div class="author-name">Individualização da Pena</div><div class="author-idea">A pena deve ser individualizada conforme a culpabilidade, antecedentes, motivos e circunstâncias do crime. Ninguém responde pelo crime de outro.</div></div>
+      <div class="author-card"><div class="author-name">Humanidade / Dignidade</div><div class="author-idea">Proibição de penas cruéis, degradantes, perpétuas ou de morte (salvo guerra declarada). A pena deve respeitar a dignidade humana.</div></div>
+      <div class="author-card"><div class="author-name">Intervenção Mínima</div><div class="author-idea">O direito penal é a <em>ultima ratio</em> — só deve atuar quando outros ramos do direito são insuficientes para proteger o bem jurídico.</div></div>
+    </div>
+
+    <h3>Conceitos e Caracteres do Crime</h3>
+    <p><strong>Conceito formal:</strong> crime é o fato que a lei define como tal. <strong>Conceito material:</strong> crime é a conduta que lesa ou expõe a perigo bens jurídicos relevantes. <strong>Conceito analítico:</strong> crime é fato típico + ilícito + culpável.</p>
+    <ul>
+      <li><strong>Crime doloso:</strong> o agente quis o resultado ou assumiu o risco (art. 18, I).</li>
+      <li><strong>Crime culposo:</strong> o agente causou o resultado por imprudência, negligência ou imperícia (art. 18, II).</li>
+      <li><strong>Crime preterdoloso:</strong> dolo no antecedente, culpa no consequente (ex.: lesão seguida de morte).</li>
+    </ul>
+
+    <h3>Norma Penal</h3>
+    <p>A norma penal possui dois preceitos: <strong>primário</strong> (a conduta proibida — "matar alguém") e <strong>secundário</strong> (a sanção — "pena de reclusão de 6 a 20 anos"). A <strong>norma penal em branco</strong> tem preceito primário incompleto, que precisa ser complementado por outra norma (ex.: tráfico de drogas — a lei penal remete ao rol da Anvisa).</p>
+
+    <h3>Conflito Aparente de Normas</h3>
+    <p>Quando duas normas parecem se aplicar ao mesmo fato, mas apenas uma deve prevalecer. Os critérios de solução são:</p>
+    <table>
+      <tr><th>Critério</th><th>Regra</th><th>Exemplo</th></tr>
+      <tr><td><strong>Especialidade</strong></td><td>Lei especial prevalece sobre a geral</td><td>Infanticídio (especial) × Homicídio (geral)</td></tr>
+      <tr><td><strong>Subsidiariedade</strong></td><td>Lei primária afasta a subsidiária</td><td>Lesão corporal é subsidiária do homicídio</td></tr>
+      <tr><td><strong>Consunção</strong></td><td>O crime mais grave absorve o menos grave</td><td>Homicídio absorve porte ilegal de arma usado no crime</td></tr>
+      <tr><td><strong>Alternatividade</strong></td><td>Tipos alternativos: basta praticar uma conduta</td><td>Crime de tráfico tem 18 verbos (importar, exportar, etc.) — praticando um, pratica-se o crime</td></tr>
+    </table>
+
+    <h3>Lei Penal no Tempo</h3>
+    <p>Regra: <strong>tempus regit actum</strong> — aplica-se a lei vigente ao tempo do fato. Exceção importante: a <strong>lei mais benéfica retroage</strong> para beneficiar o réu, mesmo após o trânsito em julgado. A lei intermediária (entre o fato e a sentença) também se aplica se for mais favorável.</p>
+
+    <h3>Lei Penal no Espaço</h3>
+    <p>Regra: <strong>territorialidade</strong> — a lei brasileira se aplica a crimes cometidos no território nacional (incluindo mar territorial, espaço aéreo, embarcações e aeronaves brasileiras). A <strong>extraterritorialidade</strong> se aplica excepcionalmente: crimes contra o Estado brasileiro, contra brasileiros no exterior, praticados por brasileiros etc.</p>
+  </div>
+
+  <!-- DIREITO CIVIL 1 -->
+  <div id="civil1" class="section">
+    <div class="section-header">
+      <span class="period-badge p1-badge">1º Período</span>
+      <h2>Direito Civil — Pessoas e Bens</h2>
+    </div>
+
+    <h3>LINDB — Lei de Introdução às Normas do Direito Brasileiro</h3>
+    <p>A LINDB (Dec.-Lei 4.657/42) não é parte do Código Civil, mas o introduce. Trata de:</p>
+    <ul>
+      <li><strong>Vigência:</strong> a lei entra em vigor após o período de <em>vacatio legis</em> (45 dias no Brasil, salvo disposição em contrário).</li>
+      <li><strong>Revogação:</strong> expressa (a nova lei diz que revoga a anterior) ou tácita (incompatibilidade).</li>
+      <li><strong>Lacunas:</strong> na omissão da lei, o juiz usa analogia, costumes e princípios gerais do direito (art. 4º LINDB).</li>
+      <li><strong>Conflito de leis no tempo:</strong> proteção do ato jurídico perfeito, direito adquirido e coisa julgada.</li>
+      <li><strong>Conflito de leis no espaço:</strong> a lei do país onde a pessoa domicilia rege a capacidade; lei do lugar do ato rege a forma.</li>
+    </ul>
+
+    <h3>Personalidade e Capacidade</h3>
+    <div class="card highlight">
+      <div class="card-title">Personalidade Jurídica</div>
+      A aptidão para ser titular de direitos e deveres na ordem civil. Para a pessoa natural, começa com o nascimento com vida (art. 2º CC). O nascituro tem seus direitos assegurados desde a concepção (mas a personalidade só se adquire com o nascimento).
+    </div>
+
+    <table>
+      <tr><th>Tipo</th><th>Quem</th><th>Consequência</th></tr>
+      <tr><td><strong>Capacidade plena</strong></td><td>Maiores de 18 anos sem restrições</td><td>Praticam todos os atos da vida civil sozinhos</td></tr>
+      <tr><td><strong>Relativamente incapazes</strong></td><td>16–18 anos; pródigos; ébrios habituais; viciados; aqueles com discernimento reduzido</td><td>Podem praticar atos, mas assistidos por representante</td></tr>
+      <tr><td><strong>Incapacidade absoluta</strong></td><td>Menores de 16 anos</td><td>Representados; ato sem representação é nulo</td></tr>
+    </table>
+    <p><em>Obs.:</em> O Estatuto da Pessoa com Deficiência (Lei 13.146/15) removeu os deficientes da incapacidade absoluta — agora são, em regra, plenamente capazes, com curatela apenas para atos patrimoniais específicos.</p>
+
+    <h3>Pessoa Jurídica</h3>
+    <p>Entidade abstrata com personalidade jurídica própria, distinta dos seus membros.</p>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Direito Público</div><div class="author-idea">Interno: União, Estados, Municípios, DF, autarquias, fundações públicas. Externo: Estados soberanos, organismos internacionais.</div></div>
+      <div class="author-card"><div class="author-name">Direito Privado</div><div class="author-idea">Associações (fins não econômicos), Sociedades (fins econômicos), Fundações (patrimônio afetado a fim específico). Início com o registro no órgão competente.</div></div>
+    </div>
+    <p>A <strong>desconsideração da personalidade jurídica</strong> (art. 50 CC) permite que, em caso de abuso da pessoa jurídica (fraude, desvio de finalidade, confusão patrimonial), os sócios respondam com seu patrimônio pessoal.</p>
+
+    <h3>Ausência</h3>
+    <p>Ausência é a situação de quem desaparece sem deixar notícia. O CC trata em três fases progressivas:</p>
+    <ol>
+      <li><strong>Curadoria dos bens do ausente:</strong> nomeação de curador para gerir seus bens.</li>
+      <li><strong>Sucessão provisória:</strong> (após 1 ano sem curador ou 3 com) — herdeiros entram na posse dos bens, mas prestam caução. O ausente pode retornar e reaver tudo.</li>
+      <li><strong>Sucessão definitiva:</strong> (após 10 anos da abertura da sucessão provisória, ou se o ausente tiver mais de 80 anos) — os bens se transferem definitivamente.</li>
+    </ol>
+
+    <h3>Domicílio</h3>
+    <p>É o lugar onde a pessoa estabelece residência com <strong>ânimo definitivo</strong> (art. 70 CC). A pessoa pode ter vários domicílios (pluralidade domiciliar — quando tem várias residências alternadas, qualquer delas é domicílio). O domicílio profissional é o local onde exerce a profissão habitualmente.</p>
+
+    <h3>Bens</h3>
+    <table>
+      <tr><th>Classificação</th><th>Tipos</th><th>Diferença</th></tr>
+      <tr><td>Corporeidade</td><td>Corpóreos × Incorpóreos</td><td>Têm existência física × apenas jurídica (créditos, direitos autorais)</td></tr>
+      <tr><td>Mobilidade</td><td>Móveis × Imóveis</td><td>Podem ser transportados × não podem (solo + tudo que a ele adere)</td></tr>
+      <tr><td>Fungibilidade</td><td>Fungíveis × Infungíveis</td><td>Substituíveis por outro da mesma espécie (dinheiro) × insubstituíveis (quadro original)</td></tr>
+      <tr><td>Consumo</td><td>Consumíveis × Inconsumíveis</td><td>Se destroem com o uso (alimentos) × não se destroem</td></tr>
+      <tr><td>Divisibilidade</td><td>Divisíveis × Indivisíveis</td><td>Podem ser partidos sem perder valor/função × não podem</td></tr>
+      <tr><td>Dependência</td><td>Principais × Acessórios</td><td>Existem por si × dependem do principal (frutos, produtos, benfeitorias)</td></tr>
+    </table>
+  </div>
+
+  <!-- ECONOMIA -->
+  <div id="economia" class="section p2-section">
+    <div class="section-header">
+      <span class="period-badge p2-badge">2º Período</span>
+      <h2>Economia</h2>
+    </div>
+
+    <h3>Conceitos Econômicos Básicos</h3>
+    <p>Economia é a ciência que estuda como as sociedades alocam <strong>recursos escassos</strong> entre usos alternativos para satisfazer necessidades ilimitadas. Divide-se em <em>microeconomia</em> (comportamento de agentes individuais — firmas e consumidores) e <em>macroeconomia</em> (comportamento da economia como um todo — PIB, inflação, emprego).</p>
+    <p><strong>Setores da Economia:</strong> <em>primário</em> (agricultura, mineração, pesca), <em>secundário</em> (indústria, construção), <em>terciário</em> (serviços, comércio, finanças). O desenvolvimento econômico tende a deslocar o peso do primário para o terciário.</p>
+
+    <h3>Escolas Econômicas</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Escola Clássica (séc. XVIII–XIX)</div><div class="author-idea">Adam Smith ("Riqueza das Nações", 1776): a "mão invisível" do mercado coordena automaticamente a produção e distribuição. David Ricardo: vantagens comparativas no comércio. O mercado livre maximiza o bem-estar.</div></div>
+      <div class="author-card"><div class="author-name">Escola Marxista</div><div class="author-idea">Marx: o capitalismo gera mais-valia (trabalho não pago) e crise cíclica. O sistema tende a concentrar riqueza e acirrar contradições de classe, levando a crises e eventual colapso.</div></div>
+      <div class="author-card"><div class="author-name">Escola Keynesiana (séc. XX)</div><div class="author-idea">John Maynard Keynes ("Teoria Geral", 1936): em crises, o mercado não se ajusta sozinho. O <strong>Estado deve intervir</strong> com gastos públicos para estimular a demanda e evitar o desemprego. Base do Estado do Bem-Estar Social.</div></div>
+      <div class="author-card"><div class="author-name">Escola Austríaca</div><div class="author-idea">Friedrich Hayek e Ludwig von Mises: críticos radicais da intervenção estatal. O mercado processa informações descentralizadas que o Estado jamais poderia coordenar. Qualquer intervenção distorce os preços e piora os resultados.</div></div>
+    </div>
+
+    <h3>Economia Comportamental</h3>
+    <p>Combina economia com psicologia para entender como as pessoas <em>realmente</em> tomam decisões (ao contrário do "homo economicus" racional da teoria clássica). Conceitos-chave: <strong>vieses cognitivos</strong> (ancoragem, aversão à perda), <strong>heurísticas</strong> (atalhos mentais), <strong>efeito dotação</strong> (valorizamos mais o que já temos). Kahneman e Thaler são os principais nomes.</p>
+
+    <h3>Juros Simples e Compostos</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Juros Simples</div><div class="author-idea">Os juros incidem sempre sobre o capital inicial. <strong>J = C × i × t</strong>. Crescimento linear. Ex.: R$1.000 a 10% a.m. por 3 meses = R$300 de juros.</div></div>
+      <div class="author-card"><div class="author-name">Juros Compostos</div><div class="author-idea">Os juros de cada período se incorporam ao capital — "juros sobre juros". <strong>M = C × (1 + i)ⁿ</strong>. Crescimento exponencial. Regula o mercado financeiro e contratos de crédito.</div></div>
+    </div>
+
+    <h3>Inflação</h3>
+    <p>Aumento generalizado e persistente do nível de preços, que corrói o poder de compra. <strong>Tipos:</strong> <em>de demanda</em> (muita demanda e pouca oferta), <em>de custos/oferta</em> (custos de produção sobem e puxam preços), <em>inercial</em> (expectativas de inflação futura se auto-realizam). O banco central controla a inflação principalmente pela taxa de juros (Selic).</p>
+  </div>
+
+  <!-- PSICOLOGIA DO DIREITO -->
+  <div id="psicologia" class="section p2-section">
+    <div class="section-header">
+      <span class="period-badge p2-badge">2º Período</span>
+      <h2>Psicologia do Direito</h2>
+    </div>
+
+    <h3>Teorias Criminológicas</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Escola de Chicago</div><div class="author-idea">A criminalidade é produto da <strong>desorganização social</strong> — deterioração dos laços comunitários em áreas urbanas em transformação. O ambiente físico e social influencia o comportamento criminoso, não apenas o indivíduo.</div></div>
+      <div class="author-card"><div class="author-name">Teoria das Janelas Quebradas</div><div class="author-idea">Wilson e Kelling (1982): sinais visíveis de desordem (janelas quebradas, pichações, abandono) sinalizam ausência de controle social e incentivam crimes mais graves. Política pública: combater pequenas desordens para prevenir crimes maiores.</div></div>
+      <div class="author-card"><div class="author-name">Associação Diferencial (Sutherland)</div><div class="author-idea">O crime é <strong>aprendido</strong> em interação com outros grupos. Quanto mais intensa, frequente e prioritária a associação com grupos que aprovam o crime, maior a probabilidade de comportamento criminoso. Explica o crime de colarinho branco.</div></div>
+      <div class="author-card"><div class="author-name">Labelling Approach (Etiquetamento)</div><div class="author-idea">A criminalidade não é uma qualidade do ato, mas o resultado de uma <strong>reação social</strong>. Ao rotular alguém como "criminoso", o sistema contribui para que o indivíduo assuma essa identidade (estigma). Becker: "desvio é aquilo que a sociedade assim define."</div></div>
+    </div>
+
+    <h3>Vitimologia</h3>
+    <p>Estudo científico das vítimas de crime. Há três níveis de vitimização:</p>
+    <ol>
+      <li><strong>Primária:</strong> dano direto causado pelo crime (físico, psicológico, patrimonial).</li>
+      <li><strong>Secundária:</strong> vitimização pelo próprio sistema de justiça — o interrogatório, a exposição, o tratamento desrespeitoso pelas autoridades (revitimização).</li>
+      <li><strong>Terciária:</strong> vitimização pela sociedade — estigma, rejeição social, falta de apoio.</li>
+    </ol>
+    <p>A <strong>Lei Maria da Penha</strong> (Lei 11.340/06) possui mecanismos específicos de proteção e não-revitimização da mulher vítima de violência doméstica: medidas protetivas, atendimento especializado, vedação à aplicação da Lei 9.099/95.</p>
+
+    <h3>Justiça Restaurativa</h3>
+    <p>Paradigma alternativo ao punitivo. Enquanto a justiça tradicional pergunta "quem violou a lei e qual a punição?", a restaurativa pergunta "quem foi prejudicado, quais são suas necessidades e como reparar o dano?". Ferramentas: <strong>círculos restaurativos</strong>, mediação vítima-ofensor, conferências de grupo familiar.</p>
+    <p><strong>CNV — Comunicação Não Violenta</strong> (Marshall Rosenberg): base do diálogo restaurativo. Quatro componentes: observação (sem julgamento), sentimento, necessidade e pedido concreto.</p>
+
+    <h3>Psicologia Forense e Teorias da Aprendizagem</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Bandura — Aprendizagem Social</div><div class="author-idea">A aprendizagem ocorre por <strong>modelagem</strong> (observação e imitação de modelos). A pessoa não precisa experimentar a consequência diretamente — basta observar o comportamento e suas consequências nos outros. Relevante para entender violência aprendida na família.</div></div>
+      <div class="author-card"><div class="author-name">Skinner — Behaviorismo</div><div class="author-idea"><strong>Reforço</strong> aumenta a probabilidade de repetição do comportamento (positivo: acrescenta algo bom; negativo: remove algo ruim). <strong>Punição</strong> diminui a probabilidade (positiva: acrescenta algo ruim; negativa: remove algo bom). Base da política de penas como dissuasão.</div></div>
+      <div class="author-card"><div class="author-name">Jung — Individuação</div><div class="author-idea">O processo de individuação é o desenvolvimento da personalidade total, integrando os aspectos conscientes e inconscientes. Na execução penal: a ressocialização pode ser vista como um processo de individuação — o condenado retoma sua identidade além do rótulo de criminoso.</div></div>
+    </div>
+  </div>
+
+  <!-- FILOSOFIA DO DIREITO -->
+  <div id="filosofia-direito" class="section p2-section">
+    <div class="section-header">
+      <span class="period-badge p2-badge">2º Período</span>
+      <h2>Filosofia do Direito</h2>
+    </div>
+
+    <h3>Autores e Conceitos Centrais</h3>
+    <div class="author-grid">
+      <div class="author-card">
+        <div class="author-name">Aristóteles — Justiça</div>
+        <div class="author-idea"><strong>Equidade (epieikeia):</strong> correção da lei quando sua aplicação geral produziria injustiça no caso concreto. <strong>Meio-justo:</strong> entre o ganhar e o perder. <strong>Justiça distributiva:</strong> proporção geométrica — a cada um segundo seu mérito. <strong>Justiça comutativa:</strong> proporção aritmética — igualdade nas trocas.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Kant — Direito e Moral</div>
+        <div class="author-idea">O direito regula a conduta <em>externa</em> (coação); a moral regula a conduta <em>interna</em> (dever). O <strong>livre-arbítrio</strong> é condição da moralidade. O <strong>imperativo categórico</strong> exige que a máxima da ação seja universalizável.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Miguel Reale — Teoria Tridimensional</div>
+        <div class="author-idea">Ver Teoria do Direito. Fato + Valor + Norma. O direito é sempre essa síntese dinâmica. Reale é o pai intelectual do Código Civil de 2002.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Platão — Justiça</div>
+        <div class="author-idea">Justiça é a harmonia — cada parte da alma (razão, ânimo, apetite) e cada classe social (filósofos, guerreiros, trabalhadores) exercendo sua função própria. Injustiça é o desequilíbrio.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Thomas Hobbes — Pacto Social</div>
+        <div class="author-idea">O direito é produto do soberano — não existe direito natural no estado de natureza (apenas força). A lei é o comando do soberano. Antecipa o positivismo jurídico.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Hans Kelsen — Positivismo Jurídico</div>
+        <div class="author-idea">Teoria Pura do Direito: o direito deve ser estudado sem considerações morais, políticas ou sociológicas. Sistema de normas hierarquizadas, com a <strong>norma fundamental (Grundnorm)</strong> no topo. A validade de cada norma deriva da superior.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Maquiavel — Realismo Político</div>
+        <div class="author-idea">O príncipe deve agir conforme a necessidade política, não a moral cristã. "É melhor ser temido do que amado." O fim político justifica os meios. O direito é instrumento do poder, não da justiça.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">John Locke — Propriedade e Resistência</div>
+        <div class="author-idea">A propriedade privada é direito natural — o trabalho misturado à natureza cria propriedade. O direito à <strong>resistência</strong>: quando o governo viola direitos naturais, o povo pode depô-lo.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Norberto Bobbio</div>
+        <div class="author-idea"><strong>Lacunas ideológicas:</strong> o direito positivo é completo formalmente (sem lacunas), mas pode ser lacunoso em valores. <strong>Poder constituinte originário:</strong> cria a constituição, não está limitado por normas anteriores. <strong>Positivismo ético:</strong> o direito válido deve ser obedecido por razões morais.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Ronald Dworkin</div>
+        <div class="author-idea">Critica Kelsen: o direito inclui princípios, não só regras. O juiz <strong>Hércules</strong> (ideal) encontra a única resposta correta para cada caso ao ponderar princípios e a <em>integridade</em> do sistema jurídico. Direito como interpretação.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Rousseau — Contrato Social</div>
+        <div class="author-idea">A lei legítima é a expressão da <strong>vontade geral</strong> (o bem comum, não a soma de interesses individuais). A lei que o cidadão obedece é, em última instância, a que ele mesmo deu a si mesmo.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Santo Agostinho e São Tomás</div>
+        <div class="author-idea">Lei eterna (razão divina) → <strong>lei natural</strong> (participação humana na razão divina) → lei humana (positiva, derivada da natural). Lei injusta não é lei ("lex iniusta non est lex" — Agostinho/Tomás).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMUNICAÇÃO JURÍDICA -->
+  <div id="comunicacao" class="section p2-section">
+    <div class="section-header">
+      <span class="period-badge p2-badge">2º Período</span>
+      <h2>Comunicação Jurídica</h2>
+    </div>
+
+    <h3>Língua, Linguagem e Discurso</h3>
+    <p><strong>Língua:</strong> sistema abstrato de signos compartilhados por uma comunidade (o código). É social e convencional. <strong>Fala:</strong> uso individual e concreto da língua. <strong>Linguagem:</strong> capacidade humana geral de comunicar por sistemas de signos (verbal, gestual, visual). <strong>Discurso:</strong> a língua em uso, situada em contexto social e histórico, com intenções e efeitos de sentido.</p>
+    <p>O discurso jurídico tem características específicas: <strong>tecnicidade</strong> (vocabulário especializado), <strong>performatividade</strong> (palavras do juiz criam realidades — sentença condenatória produz efeitos reais), <strong>argumentatividade</strong> (toda peça jurídica visa persuadir).</p>
+
+    <h3>Tipologias Textuais</h3>
+    <table>
+      <tr><th>Tipo</th><th>Finalidade</th><th>Exemplo jurídico</th></tr>
+      <tr><td><strong>Narrativo</strong></td><td>Relata eventos em sequência temporal</td><td>Parte do relatório da sentença que narra o processo</td></tr>
+      <tr><td><strong>Descritivo</strong></td><td>Caracteriza pessoas, lugares, objetos</td><td>Laudo pericial descrevendo a cena do crime</td></tr>
+      <tr><td><strong>Dissertativo-argumentativo</strong></td><td>Defende uma tese com argumentos</td><td>Petição inicial, parecer, acórdão</td></tr>
+      <tr><td><strong>Expositivo</strong></td><td>Apresenta informações sem defender tese</td><td>Manual de procedimentos, ementa</td></tr>
+      <tr><td><strong>Injuntivo</strong></td><td>Instrui, ordena, prescreve</td><td>O texto da lei ("É proibido...", "Aplica-se...")</td></tr>
+    </table>
+
+    <h3>Gêneros Textuais Jurídicos</h3>
+    <ul>
+      <li><strong>Petição inicial:</strong> peça que inicia a ação judicial (narra fatos, fundamentos jurídicos, pedido).</li>
+      <li><strong>Sentença:</strong> decisão do juiz de 1º grau (relatório + fundamentação + dispositivo).</li>
+      <li><strong>Acórdão:</strong> decisão colegiada dos tribunais.</li>
+      <li><strong>Parecer:</strong> opinião técnico-jurídica sobre uma questão (advocacia pública, consultoria).</li>
+      <li><strong>Contrato:</strong> instrumento de criação de obrigações entre partes.</li>
+      <li><strong>Habeas corpus, mandado de segurança:</strong> remédios constitucionais.</li>
+    </ul>
+
+    <h3>Argumentação Jurídica</h3>
+    <p>No direito, argumentar é convencer o julgador de que a solução proposta é a mais justa e correta. Tipos de argumentos:</p>
+    <ul>
+      <li><strong>Argumento de autoridade:</strong> citar doutrinadores, jurisprudência do STF/STJ.</li>
+      <li><strong>Argumento analógico:</strong> caso similar já decidido deve orientar o caso atual.</li>
+      <li><strong>Argumento a fortiori:</strong> "se é assim no caso menor, com mais razão no maior" (a maiori ad maius) ou vice-versa (a minori ad minus).</li>
+      <li><strong>Argumento sistemático:</strong> a interpretação deve ser coerente com o sistema jurídico como um todo.</li>
+      <li><strong>Argumento teleológico:</strong> interpretação conforme a finalidade da norma.</li>
+    </ul>
+  </div>
+
+  <!-- TEORIA DO ESTADO -->
+  <div id="teoria-estado" class="section p2-section">
+    <div class="section-header">
+      <span class="period-badge p2-badge">2º Período</span>
+      <h2>Teoria do Estado e da Constituição</h2>
+    </div>
+
+    <h3>Conceito e Classificação das Constituições</h3>
+    <p>A Constituição é a lei fundamental que organiza o Estado, distribui o poder e estabelece os direitos dos cidadãos. É o fundamento de validade de todo o ordenamento jurídico (norma normarum).</p>
+    <table>
+      <tr><th>Critério</th><th>Tipos</th></tr>
+      <tr><td><strong>Forma</strong></td><td>Escritas (codificadas em um documento) × Não escritas (costume + textos esparsos, como a inglesa)</td></tr>
+      <tr><td><strong>Rigidez</strong></td><td>Rígidas (exige processo especial para alterar — CF/88 exige 3/5 em 2 turnos) × Flexíveis (mesma lei ordinária)</td></tr>
+      <tr><td><strong>Origem</strong></td><td>Promulgadas (Assembleia Constituinte — CF/88, 1946) × Outorgadas (impostas pelo governante — 1824, 1937, 1967)</td></tr>
+      <tr><td><strong>Extensão</strong></td><td>Analíticas (longas, detalham temas — CF/88 com 250 artigos) × Sintéticas (curtas, apenas estrutura — Constituição americana com 7 artigos)</td></tr>
+    </table>
+
+    <h3>Poder Constituinte</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Poder Constituinte Originário</div><div class="author-idea">Cria a Constituição do zero. É <strong>inicial</strong> (não deriva de nenhum outro), <strong>ilimitado juridicamente</strong> (não se submete à constituição anterior), <strong>incondicionado</strong> (não segue forma predeterminada) e <strong>permanente</strong> (não se esgota com a criação — pode ser reativado). Titularidade: o povo.</div></div>
+      <div class="author-card"><div class="author-name">Poder Constituinte Derivado</div><div class="author-idea">Deriva da constituição vigente. É <strong>limitado</strong> (pelas cláusulas pétreas), <strong>condicionado</strong> (segue o procedimento da própria CF) e <strong>subordinado</strong>. Tipos: reformador (emendas) e decorrente (constituições estaduais).</div></div>
+    </div>
+
+    <h3>Cláusulas Pétreas (art. 60, §4º, CF/88)</h3>
+    <p>São limitações materiais ao poder de reforma. O Congresso não pode aprovar emenda que <em>tenda a abolir</em>:</p>
+    <ul>
+      <li>A forma federativa de Estado;</li>
+      <li>O voto direto, secreto, universal e periódico;</li>
+      <li>A separação dos Poderes;</li>
+      <li>Os direitos e garantias individuais.</li>
+    </ul>
+
+    <h3>Formas de Estado, Governo e Sistemas</h3>
+    <table>
+      <tr><th>Dimensão</th><th>Opções</th><th>Brasil</th></tr>
+      <tr><td><strong>Forma de Estado</strong></td><td>Unitário (poder central único) × Federal (autonomia dos entes)</td><td>Federal</td></tr>
+      <tr><td><strong>Forma de Governo</strong></td><td>Monarquia (chefia hereditária/vitalícia) × República (eletiva, temporária, responsável)</td><td>República</td></tr>
+      <tr><td><strong>Sistema de Governo</strong></td><td>Presidencialismo (Executivo independente, eleito) × Parlamentarismo (governo depende do parlamento)</td><td>Presidencialismo</td></tr>
+    </table>
+
+    <h3>Estrutura da CF/1988</h3>
+    <p>A CF/88 é dividida em: <strong>Preâmbulo</strong> (sem força normativa) + <strong>9 Títulos</strong> + <strong>ADCT</strong> (Ato das Disposições Constitucionais Transitórias).</p>
+    <ul>
+      <li>Título I: Princípios Fundamentais (arts. 1º–4º)</li>
+      <li>Título II: Direitos e Garantias Fundamentais (arts. 5º–17)</li>
+      <li>Títulos III–VII: Organização do Estado e dos Poderes</li>
+      <li>Título VIII: Ordem Social</li>
+    </ul>
+
+    <h3>Princípios Fundamentais (arts. 1º–4º CF/88)</h3>
+    <div class="card green">
+      <div class="card-title">Art. 1º — Fundamentos da República</div>
+      Soberania · Cidadania · Dignidade da pessoa humana · Valores sociais do trabalho e da livre iniciativa · Pluralismo político<br>
+      <em>"Todo o poder emana do povo, que o exerce por meio de representantes eleitos ou diretamente."</em>
+    </div>
+    <div class="card green">
+      <div class="card-title">Art. 3º — Objetivos Fundamentais</div>
+      Construir sociedade livre, justa e solidária · Garantir desenvolvimento nacional · Erradicar pobreza e marginalização · Promover bem de todos sem discriminação
+    </div>
+
+    <h3>Eficácia das Normas Constitucionais (José Afonso da Silva)</h3>
+    <table>
+      <tr><th>Tipo</th><th>Características</th><th>Exemplo</th></tr>
+      <tr><td><strong>Plena</strong></td><td>Autoaplicável, não requer lei regulamentadora, não pode ser restringida</td><td>Direito ao silêncio (art. 5º, LXIII)</td></tr>
+      <tr><td><strong>Contida</strong></td><td>Autoaplicável, mas pode ser restringida por lei ordinária</td><td>Liberdade profissional (art. 5º, XIII)</td></tr>
+      <tr><td><strong>Limitada</strong></td><td>Não autoaplicável — depende de lei regulamentadora para produzir efeitos plenos</td><td>Direito de greve do servidor público</td></tr>
+    </table>
+  </div>
+
+  <!-- DIREITO PENAL 2 -->
+  <div id="penal2" class="section p2-section">
+    <div class="section-header">
+      <span class="period-badge p2-badge">2º Período</span>
+      <h2>Direito Penal — Teoria Geral do Crime</h2>
+    </div>
+
+    <h3>Conceito Analítico de Crime</h3>
+    <p>Crime é um <strong>fato típico + ilícito + culpável</strong>. Para ser crime, a conduta precisa passar por esses três filtros. A ausência de qualquer um deles exclui o crime.</p>
+
+    <h3>Fato Típico — Tipicidade</h3>
+    <p>Tipicidade é a adequação da conduta ao tipo penal previsto em lei. Possui elementos:</p>
+    <ul>
+      <li><strong>Conduta:</strong> ação ou omissão humana voluntária (dolosa ou culposa).</li>
+      <li><strong>Resultado naturalístico:</strong> alteração no mundo exterior (nem todo crime exige resultado).</li>
+      <li><strong>Nexo causal:</strong> relação de causa e efeito entre conduta e resultado.</li>
+      <li><strong>Tipicidade formal:</strong> adequação literal ao tipo penal.</li>
+      <li><strong>Tipicidade material:</strong> a conduta lesiona de forma relevante o bem jurídico (afasta a tipicidade por insignificância).</li>
+    </ul>
+    <div class="card info">
+      <div class="card-title">Princípio da Insignificância</div>
+      Condutas formalmente típicas mas que causam dano mínimo ao bem jurídico não são materialmente típicas. STF exige: mínima ofensividade, ausência de periculosidade, reduzido grau de reprovabilidade e inexpressividade da lesão.
+    </div>
+
+    <h3>Iter Criminis — Caminho do Crime</h3>
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-year">1. Cogitação</div><div class="timeline-content">O crime existe apenas na mente do agente. <strong>Impunível</strong> — o direito penal não pune pensamentos.</div></div>
+      <div class="timeline-item"><div class="timeline-year">2. Preparação</div><div class="timeline-content">Atos preparatórios — aquisição de instrumentos, planejamento. Em regra, <strong>impunível</strong> (salvo quando a preparação já constitui crime autônomo, como porte ilegal de arma).</div></div>
+      <div class="timeline-item"><div class="timeline-year">3. Execução</div><div class="timeline-content">Início da realização do tipo penal. A partir daqui é <strong>punível</strong>. Se interrompida: tentativa (art. 14, II, CP) — pena reduzida de 1 a 2/3.</div></div>
+      <div class="timeline-item"><div class="timeline-year">4. Consumação</div><div class="timeline-content">Todos os elementos do tipo são realizados. Crime perfeito e acabado. <strong>Pena integral</strong>.</div></div>
+    </div>
+
+    <h3>Excludentes de Ilicitude (art. 23 CP)</h3>
+    <p>O fato é típico, mas <strong>não é ilícito</strong> (não é contrário ao direito) quando presente uma das causas:</p>
+    <div class="author-grid">
+      <div class="author-card">
+        <div class="author-name">Estado de Necessidade (art. 24)</div>
+        <div class="author-idea">Sacrifica um bem jurídico para salvar outro de perigo atual, não provocado pelo agente, quando não era razoavelmente exigível outra conduta. Ex.: destruir propriedade alheia para apagar incêndio.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Legítima Defesa (art. 25)</div>
+        <div class="author-idea">Repele, usando meios moderados, agressão injusta, atual ou iminente, a direito próprio ou alheio. Requisitos: <strong>agressão injusta</strong>, <strong>atual ou iminente</strong>, <strong>meios necessários</strong> e <strong>uso moderado</strong>.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Estrito Cumprimento do Dever Legal</div>
+        <div class="author-idea">A lei autoriza ou impõe a conduta. Ex.: policial que usa força autorizada por lei para prender alguém em flagrante.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Exercício Regular de Direito</div>
+        <div class="author-idea">O agente exerce um direito reconhecido pelo ordenamento. Ex.: o credor que retém bem do devedor (direito de retenção), cirurgião que realiza operação com consentimento.</div>
+      </div>
+    </div>
+
+    <h3>Excludentes de Culpabilidade</h3>
+    <p>O fato é típico e ilícito, mas <strong>não há culpabilidade</strong> (não se pode reprovar o agente):</p>
+    <table>
+      <tr><th>Excludente</th><th>Fundamento</th><th>Consequência</th></tr>
+      <tr><td><strong>Inimputabilidade</strong></td><td>Doença mental que retira a capacidade de entender o caráter ilícito ou autodeterminar-se; menores de 18 anos</td><td>Absolvição imprópria + medida de segurança (para inimputáveis por doença mental)</td></tr>
+      <tr><td><strong>Erro de proibição inevitável</strong></td><td>O agente não tinha como conhecer a ilicitude do fato (desconhecia que era proibido, sem possibilidade razoável de saber)</td><td>Exclui a culpabilidade; se evitável, reduz a pena</td></tr>
+      <tr><td><strong>Coação moral irresistível</strong></td><td>O agente pratica o crime sob ameaça de mal grave e inevitável — não há liberdade real de escolha</td><td>Exclui culpabilidade do coagido; responde o coator</td></tr>
+      <tr><td><strong>Obediência hierárquica</strong></td><td>Cumpre ordem de superior hierárquico, desde que não seja manifesta e notoriamente ilegal</td><td>Exclui culpabilidade do subordinado; responde o superior</td></tr>
+    </table>
+  </div>
+
+  <!-- DIREITO CIVIL 2 -->
+  <div id="civil2" class="section p2-section">
+    <div class="section-header">
+      <span class="period-badge p2-badge">2º Período</span>
+      <h2>Direito Civil — Fatos Jurídicos e Atos Ilícitos</h2>
+    </div>
+
+    <h3>Fato Jurídico em Sentido Amplo</h3>
+    <p>Todo acontecimento — natural ou humano — ao qual o ordenamento atribui relevância jurídica, produzindo, modificando ou extinguindo relações jurídicas.</p>
+    <div class="card highlight">
+      <div class="card-title">Classificação dos Fatos Jurídicos</div>
+      <strong>Fatos Naturais:</strong> independem da vontade humana. <em>Ordinários</em> (nascimento, morte, decurso do tempo) × <em>Extraordinários</em> (caso fortuito, força maior).<br><br>
+      <strong>Fatos Humanos (Atos Jurídicos em sentido amplo):</strong>
+      <ul>
+        <li><strong>Atos lícitos:</strong>
+          <ul>
+            <li><em>Ato jurídico stricto sensu:</em> os efeitos são determinados pela lei, não pela vontade (ex.: reconhecimento de filho).</li>
+            <li><em>Negócio jurídico:</em> os efeitos são determinados pela vontade das partes (ex.: contrato, testamento).</li>
+          </ul>
+        </li>
+        <li><strong>Atos ilícitos:</strong> violam o direito e geram dever de indenizar.</li>
+      </ul>
+    </div>
+
+    <h3>Negócio Jurídico — Elementos</h3>
+    <table>
+      <tr><th>Elemento</th><th>Requisito</th></tr>
+      <tr><td><strong>Agente</strong></td><td>Capaz (ou representado/assistido)</td></tr>
+      <tr><td><strong>Objeto</strong></td><td>Lícito, possível, determinado ou determinável</td></tr>
+      <tr><td><strong>Forma</strong></td><td>Prescrita ou não defesa em lei (silêncio sobre forma = liberdade de forma)</td></tr>
+      <tr><td><strong>Vontade livre</strong></td><td>Manifestação sem vícios (dolo, erro, coação)</td></tr>
+    </table>
+
+    <h3>Defeitos do Negócio Jurídico</h3>
+    <div class="author-grid">
+      <div class="author-card"><div class="author-name">Erro (art. 138–144)</div><div class="author-idea">Falsa representação da realidade por parte do próprio agente. Para invalidar: deve ser <strong>essencial e escusável</strong> (perdoável). Ex.: comprar quadro acreditando ser de outro artista.</div></div>
+      <div class="author-card"><div class="author-name">Dolo (art. 145–150)</div><div class="author-idea">Indução maliciosa ao erro pela outra parte ou por terceiro. <strong>Dolo essencial</strong> = causa anulação. <strong>Dolo acidental</strong> = só gera perdas e danos. Ex.: vendedor que omite defeito grave do produto.</div></div>
+      <div class="author-card"><div class="author-name">Coação (art. 151–155)</div><div class="author-idea">Ameaça grave, injusta e atual ao agente ou sua família, que o leva a realizar o negócio. Retira a liberdade de contratar.</div></div>
+      <div class="author-card"><div class="author-name">Lesão (art. 157)</div><div class="author-idea">Contratação em condição de premente necessidade ou inexperiência, com prestação desproporcional ao valor real. Solução: revisão judicial ou anulação.</div></div>
+      <div class="author-card"><div class="author-name">Estado de Perigo (art. 156)</div><div class="author-idea">Para salvar-se ou salvar familiar de grave dano conhecido da outra parte, assume obrigação excessivamente onerosa.</div></div>
+      <div class="author-card"><div class="author-name">Fraude contra credores (art. 158–165)</div><div class="author-idea">Atos que o devedor pratica para frustrar credores — alienação gratuita de bens quando insolvente, renúncia de herança etc. Ação Pauliana para anular.</div></div>
+      <div class="author-card"><div class="author-name">Simulação (art. 167)</div><div class="author-idea">Partes criam negócio que não corresponde à real intenção. Causa <strong>nulidade absoluta</strong> (diferente dos outros defeitos, que geram anulabilidade). Ex.: venda simulada para ocultar doação e fugir do imposto.</div></div>
+    </div>
+
+    <h3>Teoria das Nulidades</h3>
+    <table>
+      <tr><th></th><th>Nulidade Absoluta</th><th>Nulidade Relativa (Anulabilidade)</th></tr>
+      <tr><td><strong>Vício</strong></td><td>Grave (ordem pública, simulação, objeto ilícito, forma obrigatória desrespeitada)</td><td>Menos grave (vícios do consentimento: erro, dolo, coação, lesão, estado de perigo)</td></tr>
+      <tr><td><strong>Pode ser sanado?</strong></td><td>Não — não pode ser ratificado</td><td>Sim — pode ser ratificado (confirmado) pelas partes</td></tr>
+      <tr><td><strong>Quem pode alegar?</strong></td><td>Qualquer interessado, MP ou juiz de ofício</td><td>Apenas a parte prejudicada</td></tr>
+      <tr><td><strong>Prazo</strong></td><td>Imprescritível</td><td>Prescreve em 4 anos (art. 178 CC)</td></tr>
+      <tr><td><strong>Efeitos</strong></td><td>Ex tunc (retroage à data do ato)</td><td>Ex tunc (retroage, em regra)</td></tr>
+    </table>
+
+    <h3>Prescrição e Decadência</h3>
+    <div class="author-grid">
+      <div class="author-card">
+        <div class="author-name">Prescrição</div>
+        <div class="author-idea">Extinção da <strong>pretensão</strong> (direito de exigir judicialmente) pelo decurso do tempo + inércia do titular. O direito subjetivo em si não se perde, mas não pode mais ser acionado judicialmente. Prazos no CC: arts. 205 (10 anos, geral) e 206. Pode ser suspensa e interrompida.</div>
+      </div>
+      <div class="author-card">
+        <div class="author-name">Decadência</div>
+        <div class="author-idea">Extinção do próprio <strong>direito potestativo</strong> pelo decurso do tempo. Ex.: prazo para anular negócio jurídico, para exercer direito de preferência. <strong>Não</strong> se suspende nem se interrompe (salvo disposição legal). Pode ser reconhecida de ofício.</div>
+      </div>
+    </div>
+
+    <h3>Atos Ilícitos</h3>
+    <div class="card highlight">
+      <div class="card-title">Art. 186 CC — Ilícito Subjetivo</div>
+      "Aquele que, por ação ou omissão voluntária, negligência ou imprudência, violar direito e causar dano a outrem, ainda que exclusivamente moral, comete ato ilícito." Elementos: <strong>conduta</strong> (ação/omissão) + <strong>culpa</strong> (dolo ou culpa em sentido estrito) + <strong>dano</strong> + <strong>nexo causal</strong>.
+    </div>
+    <div class="card info">
+      <div class="card-title">Art. 187 CC — Abuso de Direito</div>
+      Também é ato ilícito o exercício de um direito que excede manifestamente os limites impostos pelo <strong>fim econômico ou social</strong>, pela <strong>boa-fé</strong> ou pelos <strong>bons costumes</strong>. Responsabilidade objetiva — não precisa de culpa.
+    </div>
+    <p>A consequência do ato ilícito é a obrigação de <strong>indenizar</strong> (art. 927 CC). O dano pode ser material (patrimonial) ou moral (extrapatrimonial).</p>
+
+    <h3>Representação</h3>
+    <p><strong>Representação legal:</strong> decorre da lei — pais em relação aos filhos menores, tutores, curadores. <strong>Representação convencional:</strong> decorre da vontade — procuração (mandato). O representante pratica o ato em nome e no interesse do representado, vinculando-o diretamente. A procuração "em causa própria" (in rem suam) é irrevogável.</p>
+  </div>
+
+</main>
+
+<script>
+  function show(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+    document.getElementById('main').scrollTop = 0;
+    window.scrollTo(0, 0);
+  }
+</script>
+</body>
+</html>
